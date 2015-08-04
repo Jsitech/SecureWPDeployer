@@ -1,12 +1,11 @@
 #!/bin/bash
-# JackTheStripper
 # Deployer Automatizado para el Despliegue Seguro de Wordpress
 # Securización del Servidor con JackTheStripper
-# Securización del Wordpress con WPHardening
+# Securización de Wordpress con WPHardening
 #
 # @license          http://www.gnu.org/licenses/gpl.txt  GNU GPL 3.0
 # @author           Jason Soto <jason_soto@jsitech.com>
-# @link             http://www.jsitech.com/jackthestripper
+# @link             http://www.jsitech.com
 
 clear
 echo ""
