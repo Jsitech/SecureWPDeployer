@@ -1,11 +1,17 @@
 #!/bin/bash
-# Deployer Automatizado para el Despliegue Seguro de Wordpress
+# SecureWPDeployer -Deployer Automatizado para el Despliegue Seguro de Wordpress
+#Jason Soto
+#www.jsitech.com
+#Twitter = @JsiTech
+
 # Securización del Servidor con JackTheStripper
-# Securización de Wordpress con WPHardening
-#
+# Securización de Wordpress con WPHardening de Daniel Maldonado @elcodigok
+
+
 # @license          http://www.gnu.org/licenses/gpl.txt  GNU GPL 3.0
 # @author           Jason Soto <jason_soto@jsitech.com>
 # @link             http://www.jsitech.com
+
 
 clear
 echo ""
