@@ -1,8 +1,8 @@
 # SecureWPDeployer
-Automated Secure Wordpress Deployer - JackTheStripper + WPHardening
 ================================================
+Automated Secure Wordpress Deployer - JackTheStripper + WPHardening
 
-# SecureWPDeployer is a Bash Script that will automatically:
+SecureWPDeployer is a Bash Script that will automatically:
 
 * Deploy LAMP and Hardened your linux Server by Running the Deployer JackTheStripper for the Distro
 you Select, See  http://us.jsitech.com/jackthestripper or http://www.jsitech.com/jacktghestripper
