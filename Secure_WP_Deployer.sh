@@ -5,7 +5,7 @@
 #www.jsitech.com
 #Twitter = @JsiTech
 
-# Server Hardening With JackTheStripper
+# Server Hardening With JShielder
 # Wordpress Hardening With WPHardening From Daniel Maldonado @elcodigok
 
 
@@ -26,14 +26,29 @@ echo "
 |____/ \___|\___| \_/\_/ | .__/|____/ \___| .__/|_|\___/ \__, |\___|_|
                          |_|              |_|            |___/
 
+v2.0
+
 By Jason Soto "
 echo
 echo
 }
 
-##############################################################################################################
+################################################################################################################
 
+spinner ()
+{
+    bar=" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    barlength=${#bar}
+    i=0
+    while ((i < 100)); do
+        n=$((i*barlength / 100))
+        printf "\e[00;34m\r[%-${barlength}s]\e[00m" "${bar:0:n}"
+        ((i += RANDOM%5+2))
+        sleep 0.02
+    done
+}
 
+####################################################################################################################
 #Check if running with root User
 
 if [ "$USER" != "root" ]; then
@@ -46,134 +61,54 @@ else
       echo -e "\e[34m########################################################################\e[00m"
       echo ""
       echo -e "     *** Welcome to the Automated Secure Wordpress Deployer***"
-      echo -e "Server Hardening with JackTheStripper <www.jsitech.com/jackthestripper"
-      echo -e "Wordpress Hardening with WPHardening <http://www.caceriadespammers.com.ar>"
+      echo -e "     Server Hardening with JShielder <www.jsitech.com/jshielder"
+      echo -e " Wordpress Hardening with WPHardening <http://www.caceriadespammers.com.ar>"
       echo ""
       echo -e "\e[34m########################################################################\e[00m"
       echo "  "
+      sleep 10
 fi
 
-# Selection Menu
+# Checking Distro Version
 clear
 f_banner
 echo ""
 sleep 2
 echo -e "\e[34m--------------------------------------------------------------------------------------------\e[00m"
-echo -e "\e[93m[?]\e[00m Choose your Distro"
+echo -e "\e[93m[?]\e[00m Checking what Distro you are Running"
 echo -e "\e[34m--------------------------------------------------------------------------------------------\e[00m"
 echo ""
-echo " 1. Ubuntu_12.04"
-echo " 2. Ubuntu_14.04"
-echo " 3. Ubuntu_15.04"
-echo " 4. CentOS_6"
-echo " 5. CentOS_7"
-echo " 6. RHEL_6"
-echo " 7. RHEL_7"
-echo " 8. Debian_6"
-echo " 9. Debian_7"
-echo " 10. Debian_8"
-echo " 11. Exit"
+distro=$(cat /etc/*-release |grep "DISTRIB_CODENAME" | cut -d '=' -f2)
+spinner
 echo ""
 echo -e "\e[34m----------------------------------------------------------------------------------------------\e[00m"
 echo ""
 echo -ne "\e[93m>\e[00m "
-read options
 
-# Using If to run the desired option
-if [ "$options" = "1" ]; then
-    apt-get install bzr
-    apt-get install python-git
-    bzr branch lp:jackthestripper
-    cd jackthestripper/
-    chmod +x dms.sh
-    ./dms.sh
-
-elif [ "$options" = "2" ]; then
+# Selecting JSHielder for the detected Distro
+if [ "$distro" = "trusty" ]; then
     apt-get install git
     apt-get install python-git
-    git clone https://github.com/Jsitech/JTS-UbuntuServer-14.04LTS
-    cd JTS-UbuntuServer-14.04LTS/
-    chmod +x dms.sh
-    ./dms.sh
+    git clone https://github.com/Jsitech/JShielder
+    cd JShielder/UbuntuServer_14.04LTS/
+    chmod +x jshielder.sh
+    ./jshielder.sh
 
-elif [ "$options" = "3" ]; then
+elif [ "$distro" = "vivid" ]; then
     apt-get install git
     apt-get install python-git
-    git clone https://github.com/Jsitech/JTS-UbuntuServer-15.04LTS
-    cd JTS-UbuntuServer-15.04LTS/
-    chmod +x dms.sh
-    ./dms.sh
+    git clone https://github.com/Jsitech/JShielder
+    cd JShielder/UbuntuServer_15.04/
+    chmod +x jshielder.sh
+    ./jshielder.sh
 
-elif [ "$options" = "4" ]; then
-    yum install git
-    yum install GitPython
-    git clone https://github.com/Jsitech/JTS-Centos-6
-    cd JTS-Centos-6/
-    chmod +x dms.sh
-    ./dms.sh
+# If no Compatible Distro is Detected
 
-elif [ "$options" = "5" ]; then
-    yum install git
-    yum install GitPython
-    git clone https://github.com/Jsitech/JTS-Centos-7
-    cd JTS-Centos-7/
-    chmod +x Prerun.sh
-    chmod +x dms.sh
-    sh Prerun.sh
-    ./dms.sh
-
-elif [ "$options" = "6" ]; then
-    yum install git
-    yum install GitPython
-    git clone https://github.com/Jsitech/JTS-RHEL-6
-    cd JTS-RHEL-6/
-    chmod +x dms.sh
-    ./dms.sh
-
-elif [ "$options" = "7" ]; then
-    yum install git
-    yum install GitPython
-    git clone https://github.com/Jsitech/JTS-RHEL-7
-    cd JTS-RHEL-7/
-    chmod +x Prerun.sh
-    chmod +x dms.sh
-    sh Prerun.sh
-    ./dms.sh
-
-
-elif [ "$options" = "8" ]; then
-     apt-get install git
-     apt-get install python-git
-     git clone https://github.com/Jsitech/JTS-Debian-6
-     cd JTS-Debian-6/
-     chmod +x dms.sh
-     ./dms.sh
-
-elif [ "$options" = "9" ]; then
-     apt-get install git
-     apt-get install python-git
-     git clone https://github.com/Jsitech/JTS-Debian-7
-     cd JTS-Debian-7/
-     chmod +x dms.sh
-     ./dms.sh
-
-elif [ "$options" = "10" ]; then
-     apt-get install git
-     apt-get install python-git
-     git clone https://github.com/Jsitech/JTS-Debian-8
-     cd JTS-Debian-8/
-     chmod +x dms.sh
-     ./dms.sh
-
-elif [ "$options" = "11" ]; then
-        echo " You chose $options"
-    exit
-
-# If another option is chosen repeat Menu
 else
     clear;
-    echo "Please select an option"
-
+    echo "No compatible Distro Detected... Exiting"
+    sleep 5
+    exit
 fi
 
 #Proceed with Wordpress Installation
@@ -238,6 +173,7 @@ echo -e "\e[34m-----------------------------------------------------------------
 echo -e "\e[93m[?]\e[00m Setting Permissions on the Wordpress Directory"
 echo -e "\e[34m---------------------------------------------------------------------------------------------------------\e[00m"
 echo ""
+spinner
 ls /usr/bin/dpkg > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     chown -R www-data:www-data /var/www/html/$DIR/
