@@ -17,6 +17,7 @@ https://github.com/elcodigok/wphardening for more info
 ===================================================
 
 chmod +x Secure_WP_Deployer.sh
+
 ./Secure_WP_Deployer.sh
 
 # Note
@@ -27,4 +28,5 @@ so the script can proceed with the Wordpress Installation
 # ChangeLog
 ===================================================
 v2.0 - Distro Selection Automation, JShielder for Server Hardening, Minor Changes
+
 v1.0 - Initial Script, JackTheStripper for Hardening, Distro Selection menu
