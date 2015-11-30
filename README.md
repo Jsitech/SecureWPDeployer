@@ -13,6 +13,17 @@ for more info.
 * Hardened the Wordpress Installation using WPHardening, see
 https://github.com/elcodigok/wphardening for more info
 
+# How to Run it
+===================================================
+
+chmod +x Secure_WP_Deployer.sh
+./Secure_WP_Deployer.sh
+
+# Note
+===================================================
+JShielder will run First. In the Last Step where JShielder rebbot the server, simply answer n
+so the script can proceed with the Wordpress Installation
+
 # ChangeLog
 ===================================================
 v2.0 - Distro Selection Automation, JShielder for Server Hardening, Minor Changes
