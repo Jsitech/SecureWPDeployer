@@ -1,8 +1,8 @@
 #!/bin/bash
-# SecureWPDeployer - Automated Secure Wordpress Deployer
+# SecWPDeploy - Automated Secure Wordpress Deployer
 #Jason Soto
-#jason_soto [AT] jsitech [DOT] com
-#www.jsitech.com
+#www.jasonsoto.com
+#www.jsitech-sec.com
 #Twitter = @JsiTech
 
 # Server Hardening With JShielder
@@ -11,7 +11,7 @@
 
 # @license          http://www.gnu.org/licenses/gpl.txt  GNU GPL 3.0
 # @author           Jason Soto <jason_soto@jsitech.com>
-# @link             http://www.jsitech.com
+# @link             http://www.jsitech-sec.com
 
 
 ##############################################################################################################
@@ -19,16 +19,19 @@
 f_banner(){
 echo
 echo "
- ____          __        __     ____             _
-/ ___|  ___  __\ \      / / __ |  _ \  ___ _ __ | | ___  _   _  ___ _ __
-\___ \ / _ \/ __\ \ /\ / / '_ \| | | |/ _ \ '_ \| |/ _ \| | | |/ _ \ '__|
- ___) |  __/ (__ \ V  V /| |_) | |_| |  __/ |_) | | (_) | |_| |  __/ |
-|____/ \___|\___| \_/\_/ | .__/|____/ \___| .__/|_|\___/ \__, |\___|_|
-                         |_|              |_|            |___/
 
-v2.0
+███████╗███████╗ ██████╗██╗    ██╗██████╗ ██████╗ ███████╗██████╗ ██╗      ██████╗ ██╗   ██╗
+██╔════╝██╔════╝██╔════╝██║    ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██║     ██╔═══██╗╚██╗ ██╔╝
+███████╗█████╗  ██║     ██║ █╗ ██║██████╔╝██║  ██║█████╗  ██████╔╝██║     ██║   ██║ ╚████╔╝ 
+╚════██║██╔══╝  ██║     ██║███╗██║██╔═══╝ ██║  ██║██╔══╝  ██╔═══╝ ██║     ██║   ██║  ╚██╔╝  
+███████║███████╗╚██████╗╚███╔███╔╝██║     ██████╔╝███████╗██║     ███████╗╚██████╔╝   ██║   
+╚══════╝╚══════╝ ╚═════╝ ╚══╝╚══╝ ╚═╝     ╚═════╝ ╚══════╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝  
 
-By Jason Soto "
+Secure Wordpress Deployer
+By Jason Soto @Jsitech 
+
+
+"
 echo
 echo
 }
@@ -61,7 +64,7 @@ else
       echo -e "\e[34m########################################################################\e[00m"
       echo ""
       echo -e "     *** Welcome to the Automated Secure Wordpress Deployer***"
-      echo -e "     Server Hardening with JShielder <www.jsitech.com/jshielder"
+      echo -e "     Server Hardening with JShielder <github.com/jsitech/jshielder"
       echo -e " Wordpress Hardening with WPHardening <http://www.caceriadespammers.com.ar>"
       echo ""
       echo -e "\e[34m########################################################################\e[00m"
@@ -87,6 +90,8 @@ echo -ne "\e[93m>\e[00m "
 
 # Selecting JSHielder for the detected Distro
 if [ "$distro" = "trusty" ]; then
+    echo "Ubuntu Server 14.04LTS Detected"
+    sleep 1
     apt-get install git
     apt-get install python-git
     git clone https://github.com/Jsitech/JShielder
@@ -94,11 +99,13 @@ if [ "$distro" = "trusty" ]; then
     chmod +x jshielder.sh
     ./jshielder.sh
 
-elif [ "$distro" = "vivid" ]; then
+elif [ "$distro" = "xenial" ]; then
+    echo "Ubuntu Server 16.04LTS Detected"
+    sleep 1
     apt-get install git
     apt-get install python-git
     git clone https://github.com/Jsitech/JShielder
-    cd JShielder/UbuntuServer_15.04/
+    cd JShielder/UbuntuServer_16.04LTS/
     chmod +x jshielder.sh
     ./jshielder.sh
 
@@ -158,12 +165,13 @@ echo -e "\e[34m-----------------------------------------------------------------
 echo ""
 git clone https://github.com/elcodigok/wphardening.git
 cd wphardening/
+pip install -r requirements.txt
 echo ""
 sleep 2
 echo ""
 echo -e "\e[01;32m[-]\e[00m Securing Wordpress Installation"
 echo ""
-./wphardening.py -d /var/www/html/$DIR -v -c -r -f -t --wp-config --robots --indexes --plugins
+python wphardening.py -d /var/www/html/$DIR -c -r -f -t --wp-config --indexes --plugins --6g-firewall --rest-api -o /root/wphardening.log
 mv /var/www/html/$DIR/wp-config-wphardening.php /var/www/html/$DIR/wp-config.php
 
 #Check Distro Base and Set Permissions
