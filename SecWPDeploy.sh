@@ -150,7 +150,7 @@ echo " *** MEMORIZE THE INFO YOU WILL TYPE HERE, WILL NEED IT LATER ***"
 echo -n " Type Database Name: "; read db_name
 echo -n " Type User:  "; read db_user
 echo -n " Type Password:  "; read db_pass
-cd ..
+cd ../..
 chmod +x WPDBcreate.sh
 ./WPDBcreate.sh $db_name $db_user $db_pass
 echo ""
