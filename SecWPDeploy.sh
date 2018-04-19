@@ -30,9 +30,7 @@ echo "
 Secure Wordpress Deployer
 By Jason Soto @Jsitech 
 
-
 "
-echo
 echo
 }
 
@@ -137,6 +135,10 @@ fi
     tar xzvf latest.tar.gz
     mkdir /var/www/html/$DIR
     cp -rf wordpress/* /var/www/html/$DIR/
+    echo "Setting Apache for Wordpress"
+    spinner
+    cp templates/apache-wordpress /etc/apache2/apache2.conf
+    echo " OK"
 
 
 #Create Wordpress Database
